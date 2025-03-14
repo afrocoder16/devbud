@@ -1,0 +1,67 @@
+/* Basic styles */
+body {
+    font-family: 'Arial', sans-serif;
+    background-color: #f8f9fa;
+    color: #212529;
+}
+
+header {
+    background-color: #343a40;
+}
+
+footer {
+    background-color: #343a40;
+    color: white;
+}
+
+.navbar {
+    padding: 1rem;
+}
+
+.navbar-brand {
+    font-size: 1.5rem;
+    font-weight: bold;
+    color: white !important;
+}
+
+.nav-link {
+    color: white !important;
+}
+
+.dropdown-menu {
+    background-color: #343a40;
+}
+
+.dropdown-item {
+    color: white;
+}
+
+/* Dark mode styles */
+body.dark-mode {
+    background-color: #212529;
+    color: #f8f9fa;
+}
+
+body.dark-mode header {
+    background-color: #121212;
+}
+
+body.dark-mode footer {
+    background-color: #121212;
+}
+
+body.dark-mode .navbar {
+    background-color: #121212;
+}
+
+body.dark-mode .nav-link {
+    color: #f8f9fa !important;
+}
+
+body.dark-mode .dropdown-menu {
+    background-color: #121212;
+}
+
+body.dark-mode .dropdown-item {
+    color: #f8f9fa;
+}
