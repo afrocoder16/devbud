@@ -49,4 +49,4 @@ class InboxView(LoginRequiredMixin, ListView):
     context_object_name = 'conversations'
 
     def get_queryset(self):
-        return Conversation.objects.filter(users=self.request.user)
+        return Conversation.objects.filter(participants=self.request.user)

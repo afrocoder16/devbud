@@ -1,6 +1,6 @@
 from django.urls import path
 from django.contrib.auth import views as auth_views  
-from .views import register, account_settings
+from .views import register, account_settings, user_home
 from django.contrib.auth.views import LogoutView  
 
 
@@ -13,7 +13,6 @@ from .views import (
 )
 
 urlpatterns = [
-    path('profiles/', ProfileListView.as_view(), name='user_home'),
     path('profiles/create/', ProfileCreateView.as_view(), name='profile_create'),
     path('profiles/<int:pk>/', ProfileDetailView.as_view(), name='profile_detail'),
     path('profiles/<int:pk>/update/', ProfileUpdateView.as_view(), name='profile_update'),
@@ -23,5 +22,6 @@ urlpatterns = [
     path('profile/<int:pk>/', ProfileDetailView.as_view(), name='account_profile'),
     path('settings/', account_settings, name='account_settings'),  # ✅ Account settings page
     path('logout/', LogoutView.as_view(next_page='/'), name='account_logout'),  # ✅ Logout users & redirect to home
+    path('home/', user_home, name='user_home'),  # ✅ Add home URL
 
 ]

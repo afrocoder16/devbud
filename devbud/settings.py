@@ -29,6 +29,7 @@ INSTALLED_APPS = [
     'projects',
     'messaging',
     'community',
+    'feed',
 ]
 
 MIDDLEWARE = [
@@ -114,4 +115,6 @@ STATIC_URL = 'static/'
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
-LOGIN_REDIRECT_URL = '/accounts/home/'
+LOGIN_REDIRECT_URL = '/feed/' 
+
+LOGOUT_REDIRECT_URL = '/'

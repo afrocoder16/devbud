@@ -1,6 +1,6 @@
 from django.shortcuts import render, redirect
 from django.contrib.auth import login
-from django.contrib.auth.decorators import login_required  # ✅ Add this import
+from django.contrib.auth.decorators import login_required  
 from django.urls import reverse_lazy
 from django.views.generic import ListView, DetailView, CreateView, UpdateView, DeleteView
 from .models import Profile
@@ -12,18 +12,21 @@ def register(request):
         form = RegisterForm(request.POST)
         if form.is_valid():
             user = form.save()
-            # ✅ Create a Profile automatically for the new user
-            Profile.objects.create(user=user)  
-            login(request, user)
-            return redirect('account_profile', pk=user.pk)  # ✅ Redirect using correct user ID
+            
+            # ✅ Check if Profile already exists before creating a new one
+            profile, created = Profile.objects.get_or_create(user=user)
+
+            login(request, user)  # Log the user in
+            return redirect('user_home')  # Redirect to user's home page
     else:
         form = RegisterForm()
-    
+
     return render(request, 'accounts/register.html', {'form': form})
 
+
 @login_required
-def home(request):
-    return render(request, 'accounts/user_home.html', {'user': request.user})
+def user_home(request):
+    return render(request, 'accounts/home.html', {'user': request.user})
 
 @login_required
 def profile(request, pk):
@@ -41,7 +44,6 @@ def account_settings(request):
         form = ProfileForm(instance=request.user.profile)
 
     return render(request, 'accounts/account_settings.html', {'form': form})
-
 
 class ProfileListView(ListView):
     model = Profile
