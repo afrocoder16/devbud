@@ -12,4 +12,5 @@ urlpatterns = [
     path('<int:pk>/delete/', ProjectDeleteView.as_view(), name='project_delete'),
     path('<int:pk>/request-collaboration/', request_collaboration, name='request_collaboration'),
     path('<int:pk>/add-feedback/', add_feedback, name='add_feedback'),
+    path('', ProjectListView.as_view(), name='project_list'),
 ]

@@ -1,0 +1,23 @@
+{% extends 'base.html' %}
+
+{% block title %}Community - DevBud{% endblock %}
+
+{% block content %}
+<div class="container">
+    <h2>🌍 Community Feed</h2>
+    <p>Join the discussion, share ideas, and interact with fellow developers.</p>
+
+    <div class="list-group">
+        {% for post in posts %}
+            <div class="list-group-item">
+                <h5>{{ post.title }}</h5>
+                <p>{{ post.content|truncatewords:30 }}</p>
+                <small>By {{ post.author.username }} • {{ post.created_at|date:"M d, Y" }}</small>
+                <a href="{% url 'community_post_detail' post.pk %}" class="btn btn-sm btn-primary">Read More</a>
+            </div>
+        {% empty %}
+            <p>No posts yet. <a href="{#}">Start a discussion?</a></p>
+        {% endfor %}
+    </div>
+</div>
+{% endblock %}

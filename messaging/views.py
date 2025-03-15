@@ -3,6 +3,9 @@ from django.contrib.auth.decorators import login_required
 from .models import Conversation, Message
 from .forms import MessageForm
 from django.contrib.auth.models import User
+from django.contrib.auth.mixins import LoginRequiredMixin 
+from django.views.generic import ListView
+from .models import Conversation
 
 @login_required
 def inbox(request):
@@ -39,3 +42,11 @@ def start_conversation(request, user_id):
         conversation = Conversation.objects.create()
         conversation.participants.add(request.user, other_user)
     return redirect('conversation_detail', conversation_id=conversation.id)
+
+class InboxView(LoginRequiredMixin, ListView):
+    model = Conversation
+    template_name = 'messaging/inbox.html'  # ✅ Create this template next
+    context_object_name = 'conversations'
+
+    def get_queryset(self):
+        return Conversation.objects.filter(users=self.request.user)

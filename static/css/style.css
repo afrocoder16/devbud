@@ -65,3 +65,221 @@ body.dark-mode .dropdown-menu {
 body.dark-mode .dropdown-item {
     color: #f8f9fa;
 }
+
+/* Login Page Specific Styles */
+.login-container {
+    min-height: 100vh;
+    background: linear-gradient(135deg, #1e3c72 0%, #2a5298 100%);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 2rem;
+}
+
+.login-card {
+    border: none;
+    border-radius: 15px;
+    background: rgba(255, 255, 255, 0.95);
+    backdrop-filter: blur(10px);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.login-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+}
+
+.login-logo {
+    width: 80px;
+    margin-bottom: 1rem;
+}
+
+.login-title {
+    font-size: 1.75rem;
+    font-weight: 700;
+    color: #1e3c72;
+}
+
+.login-subtitle {
+    font-size: 1rem;
+    color: #6c757d;
+}
+
+.form-group {
+    position: relative;
+}
+
+.input-wrapper {
+    position: relative;
+    display: flex;
+    align-items: center;
+}
+
+.input-icon {
+    position: absolute;
+    left: 10px;
+    font-size: 1.2rem;
+    color: #6c757d;
+}
+
+.login-input {
+    padding-left: 40px;
+    border-radius: 10px;
+    border: 1px solid #ced4da;
+    transition: border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+.login-input:focus {
+    border-color: #2a5298;
+    box-shadow: 0 0 5px rgba(42, 82, 152, 0.3);
+    outline: none;
+}
+
+.login-btn {
+    background: linear-gradient(90deg, #2a5298, #1e3c72);
+    border: none;
+    border-radius: 10px;
+    padding: 0.75rem;
+    font-size: 1.1rem;
+    font-weight: 600;
+    transition: background 0.3s ease, transform 0.3s ease;
+}
+
+.login-btn:hover {
+    background: linear-gradient(90deg, #1e3c72, #2a5298);
+    transform: scale(1.02);
+}
+
+.forgot-password {
+    font-size: 0.9rem;
+    color: #2a5298;
+    text-decoration: none;
+    transition: color 0.3s ease;
+}
+
+.forgot-password:hover {
+    color: #1e3c72;
+    text-decoration: underline;
+}
+
+.register-prompt {
+    font-size: 0.9rem;
+    color: #6c757d;
+}
+
+.register-link {
+    color: #2a5298;
+    text-decoration: none;
+    font-weight: 600;
+    transition: color 0.3s ease;
+}
+
+.register-link:hover {
+    color: #1e3c72;
+    text-decoration: underline;
+}
+
+/* Fade-in animation */
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.login-form {
+    animation: fadeIn 0.5s ease forwards;
+}
+
+/* Register Page Specific Styles */
+.register-container {
+    min-height: 100vh;
+    background: linear-gradient(135deg, #1e3c72 0%, #2a5298 100%);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 2rem;
+}
+
+.register-card {
+    border: none;
+    border-radius: 15px;
+    background: rgba(255, 255, 255, 0.95);
+    backdrop-filter: blur(10px);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.register-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+}
+
+.register-logo {
+    width: 80px;
+    margin-bottom: 1rem;
+}
+
+.register-title {
+    font-size: 1.75rem;
+    font-weight: 700;
+    color: #1e3c72;
+}
+
+.register-subtitle {
+    font-size: 1rem;
+    color: #6c757d;
+}
+
+.register-input {
+    padding-left: 40px;
+    border-radius: 10px;
+    border: 1px solid #ced4da;
+    transition: border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+.register-input:focus {
+    border-color: #2a5298;
+    box-shadow: 0 0 5px rgba(42, 82, 152, 0.3);
+    outline: none;
+}
+
+.register-btn {
+    background: linear-gradient(90deg, #2a5298, #1e3c72);
+    border: none;
+    border-radius: 10px;
+    padding: 0.75rem;
+    font-size: 1.1rem;
+    font-weight: 600;
+    transition: background 0.3s ease, transform 0.3s ease;
+}
+
+.register-btn:hover {
+    background: linear-gradient(90deg, #1e3c72, #2a5298);
+    transform: scale(1.02);
+}
+
+.login-prompt {
+    font-size: 0.9rem;
+    color: #6c757d;
+}
+
+.login-link {
+    color: #2a5298;
+    text-decoration: none;
+    font-weight: 600;
+    transition: color 0.3s ease;
+}
+
+.login-link:hover {
+    color: #1e3c72;
+    text-decoration: underline;
+}
+
+/* Fade-in animation (reused from login) */
+.register-form {
+    animation: fadeIn 0.5s ease forwards;
+}

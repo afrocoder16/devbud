@@ -1,0 +1,27 @@
+{% extends 'base.html' %}
+
+{% block title %}Inbox - DevBud{% endblock %}
+
+{% block content %}
+<div class="container">
+    <h2>📩 Your Inbox</h2>
+    <p>View and continue your conversations.</p>
+
+    <div class="list-group">
+        {% for conversation in conversations %}
+            <a href="{% url 'conversation_detail' conversation.pk %}" class="list-group-item list-group-item-action">
+                <strong>Chat with:</strong> 
+                {% for user in conversation.users.all %}
+                    {% if user != request.user %}
+                        {{ user.username }}
+                    {% endif %}
+                {% endfor %}
+                <br>
+                <small>Last message: {{ conversation.last_message|default:"No messages yet" }}</small>
+            </a>
+        {% empty %}
+            <p>No conversations found. <a href="#">Start a new conversation?</a></p>
+        {% endfor %}
+    </div>
+</div>
+{% endblock %}

@@ -1,7 +1,7 @@
 from django.urls import reverse_lazy
 from django.views.generic import ListView, DetailView, CreateView, UpdateView, DeleteView
 from django.contrib.auth.mixins import LoginRequiredMixin
-from .models import Group, Event, Hackathon, Job, LearningResource, ProgressTracking
+from .models import Group, Event, Hackathon, Job, LearningResource, ProgressTracking, CommunityPost
 from .forms import GroupForm, EventForm, HackathonForm, JobForm, LearningResourceForm, ProgressTrackingForm
 
 # Group Views
@@ -171,3 +171,11 @@ class ProgressTrackingDeleteView(LoginRequiredMixin, DeleteView):
     model = ProgressTracking
     template_name = 'community/progress_confirm_delete.html'
     success_url = reverse_lazy('progress_list')
+
+class CommunityFeedView(ListView):
+    model = CommunityPost
+    template_name = 'community/community_feed.html'  # ✅ Make sure this file exists
+    context_object_name = 'posts'
+
+    def get_queryset(self):
+        return CommunityPost.objects.order_by('-created_at')  # ✅ Fetch latest posts
