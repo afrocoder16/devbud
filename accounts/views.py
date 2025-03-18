@@ -81,11 +81,24 @@ class ProfileUpdateView(LoginRequiredMixin, UpdateView):
     form_class = ProfileForm
     template_name = 'accounts/profile_edit.html'
 
+    def get_object(self, queryset=None):
+        user_profile = Profile.objects.filter(user=self.request.user).first()
+        if not user_profile:
+            print(f"❌ Profile not found for user: {self.request.user.username}")
+        else:
+            print(f"✅ Profile found for user: {self.request.user.username}")
+        return user_profile
+
+    def form_valid(self, form):
+        print(f"📝 Form is valid. Updating profile for user: {self.request.user.username}")
+        return super().form_valid(form)
+
+    def form_invalid(self, form):
+        print(f"❌ Form is invalid. Errors: {form.errors}")
+        return self.render_to_response(self.get_context_data(form=form))
+
     def get_success_url(self):
         return reverse_lazy('account_profile', kwargs={'pk': self.request.user.profile.pk})
-
-    def get_object(self, queryset=None):
-        return self.request.user.profile
 
 
 class ProfileDeleteView(LoginRequiredMixin, DeleteView):

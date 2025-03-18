@@ -27,4 +27,6 @@ urlpatterns = [
     path('home/', user_home, name='user_home'),
     path('profile/<int:pk>/', ProfileDetailView.as_view(), name='account_profile'),
     path('feed/', public_feed, name='public_feed'),  # Public feed for non-logged-in users
+    path('profile/<int:pk>/', ProfileDetailView.as_view(), name='account_profile'),  # Only GET
+
 ]
