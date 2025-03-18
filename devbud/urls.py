@@ -4,10 +4,11 @@ from . import views
 from accounts.views import public_feed
 
 urlpatterns = [
-    path('', public_feed, name='home'),  # ✅ Set the public feed as home
-    path('feed/', include('feed.urls')),
+    path('admin/', admin.site.urls),  # ✅ Ensure admin URL is included
+    path('', public_feed, name='home'),  # Adjust based on your app structure
     path('accounts/', include('accounts.urls')),
     path('projects/', include('projects.urls')),
     path('messaging/', include('messaging.urls')),
     path('community/', include('community.urls')),
+    path('feed/', include('feed.urls')),
 ]

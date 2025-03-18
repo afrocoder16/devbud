@@ -147,9 +147,14 @@
                     </div>
                     <!-- Form Buttons -->
                     <div class="d-flex justify-content-between">
-                        <button type="submit" class="btn btn-primary settings-btn">Save Changes</button>
-                        <a href="{% url 'account_profile' pk=user.pk %}" class="btn btn-secondary cancel-btn">Cancel</a>
+                        <form method="post" action="{% url 'profile_edit' pk=user.profile.pk %}">
+                            {% csrf_token %}
+                            {{ form.as_p }}
+                            <button type="submit" class="btn btn-primary">Save Changes</button>
+                        </form>
+                        <a href="{% url 'account_profile' %}" class="btn btn-secondary cancel-btn">Cancel</a>
                     </div>
+                    
                 </form>
             </div>
         </div>
