@@ -1,163 +1,47 @@
 {% extends 'base.html' %}
 {% load static %}
 
-{% block title %}Account Settings - DevBud{% endblock %}
+{% block title %}{{ profile.user.username }}'s Profile - DevBud{% endblock %}
 
 {% block content %}
-<div class="settings-container">
+<div class="profile-container">
     <div class="row">
-        <!-- Sidebar -->
         <div class="col-md-3">
-            <div class="sidebar card shadow-sm">
-                <div class="card-body">
-                    <h5 class="sidebar-title">Settings Menu</h5>
-                    <ul class="nav flex-column">
-                        <li class="nav-item">
-                            <a class="nav-link active" href="#profile-section">Profile</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="#social-section">Social Links</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="#preferences-section">Preferences</a>
-                        </li>
-                    </ul>
+            <div class="profile-sidebar card shadow-sm">
+                <div class="card-body text-center">
+                    <img src="{% if profile.profile_picture %}{{ profile.profile_picture.url }}{% else %}https://via.placeholder.com/150{% endif %}" 
+                         alt="Profile Picture" class="profile-pic rounded-circle">
+                    <h4 class="profile-username mt-2">{{ profile.user.username }}</h4>
+                    <p class="profile-bio">{{ profile.bio|default:"No bio available" }}</p>
+
+                    <!-- ✅ Edit Profile Button -->
+                    {% if request.user == profile.user %}
+                        <a href="{% url 'profile_edit' pk=profile.user.pk %}" class="btn btn-primary mt-3">Edit Profile</a>
+                    {% endif %}
                 </div>
             </div>
         </div>
-        <!-- Main Content -->
+
         <div class="col-md-9">
-            <div class="main-content">
-                <h2 class="settings-title mb-4">⚙️ Account Settings</h2>
-                <p class="settings-subtitle">Update your profile details and preferences.</p>
+            <div class="profile-content">
+                <h2>{{ profile.user.first_name }} {{ profile.user.last_name }}</h2>
+                <p><strong>Email:</strong> {{ profile.user.email }}</p>
+                <p><strong>Location:</strong> {{ profile.location|default:"Not provided" }}</p>
+                <p><strong>Date of Birth:</strong> {{ profile.date_of_birth|default:"Not provided" }}</p>
 
-                <form method="POST" enctype="multipart/form-data" class="settings-form">
-                    {% csrf_token %}
-                    <!-- Profile Section -->
-                    <div class="card shadow-sm mb-4" id="profile-section">
-                        <div class="card-body">
-                            <h4 class="section-title">Profile Information</h4>
-                            <div class="row">
-                                <div class="col-md-6 form-group">
-                                    <label for="first_name" class="form-label">First Name</label>
-                                    <div class="input-wrapper">
-                                        <span class="input-icon">👤</span>
-                                        <input type="text" class="form-control settings-input" id="first_name" name="first_name" value="{{ form.first_name.value|default_if_none:'' }}" placeholder="Enter your first name">
-                                    </div>
-                                </div>
-                                <div class="col-md-6 form-group">
-                                    <label for="last_name" class="form-label">Last Name</label>
-                                    <div class="input-wrapper">
-                                        <span class="input-icon">👤</span>
-                                        <input type="text" class="form-control settings-input" id="last_name" name="last_name" value="{{ form.last_name.value|default_if_none:'' }}" placeholder="Enter your last name">
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="row">
-                                <div class="col-md-6 form-group">
-                                    <label for="email" class="form-label">Email</label>
-                                    <div class="input-wrapper">
-                                        <span class="input-icon">✉️</span>
-                                        <input type="email" class="form-control settings-input" id="email" name="email" value="{{ form.email.value|default_if_none:'' }}" placeholder="Enter your email">
-                                    </div>
-                                </div>
-                                <div class="col-md-6 form-group">
-                                    <label for="date_of_birth" class="form-label">Date of Birth</label>
-                                    <div class="input-wrapper">
-                                        <span class="input-icon">📅</span>
-                                        <input type="date" class="form-control settings-input" id="date_of_birth" name="date_of_birth" value="{{ form.date_of_birth.value|default_if_none:'' }}">
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="form-group">
-                                <label for="bio" class="form-label">Bio</label>
-                                <div class="input-wrapper">
-                                    <span class="input-icon">📝</span>
-                                    <textarea class="form-control settings-input" id="bio" name="bio" rows="3" placeholder="Tell us about yourself">{{ form.bio.value|default_if_none:'' }}</textarea>
-                                </div>
-                            </div>
-                            <div class="form-group">
-                                <label for="profile_picture" class="form-label">Profile Picture</label>
-                                <div class="profile-pic-wrapper">
-                                    <img id="profile-pic-preview" src="{% if user.profile_picture %}{{ user.profile_picture.url }}{% else %}https://via.placeholder.com/100{% endif %}" alt="Profile Picture" class="profile-pic rounded-circle">
-                                    <input type="file" class="form-control settings-input mt-2" id="profile_picture" name="profile_picture" accept="image/*">
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <!-- Social Links Section -->
-                    <div class="card shadow-sm mb-4" id="social-section">
-                        <div class="card-body">
-                            <h4 class="section-title">Social Links</h4>
-                            <div class="form-group">
-                                <label for="linkedin" class="form-label">LinkedIn</label>
-                                <div class="input-wrapper">
-                                    <span class="input-icon">🔗</span>
-                                    <input type="url" class="form-control settings-input" id="linkedin" name="linkedin" value="{{ form.linkedin.value|default_if_none:'' }}" placeholder="https://linkedin.com/in/yourprofile">
-                                </div>
-                            </div>
-                            <div class="form-group">
-                                <label for="github" class="form-label">GitHub</label>
-                                <div class="input-wrapper">
-                                    <span class="input-icon">🐙</span>
-                                    <input type="url" class="form-control settings-input" id="github" name="github" value="{{ form.github.value|default_if_none:'' }}" placeholder="https://github.com/yourusername">
-                                </div>
-                            </div>
-                            <div class="form-group">
-                                <label for="website" class="form-label">Website</label>
-                                <div class="input-wrapper">
-                                    <span class="input-icon">🌐</span>
-                                    <input type="url" class="form-control settings-input" id="website" name="website" value="{{ form.website.value|default_if_none:'' }}" placeholder="https://yourwebsite.com">
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <!-- Preferences Section -->
-                    <div class="card shadow-sm mb-4" id="preferences-section">
-                        <div class="card-body">
-                            <h4 class="section-title">Preferences</h4>
-                            <div class="form-group">
-                                <label for="experience_level" class="form-label">Experience Level</label>
-                                <select class="form-control settings-input" id="experience_level" name="experience_level">
-                                    <option value="" disabled {% if not form.experience_level.value %}selected{% endif %}>Select your experience level</option>
-                                    <option value="beginner" {% if form.experience_level.value == 'beginner' %}selected{% endif %}>Beginner</option>
-                                    <option value="intermediate" {% if form.experience_level.value == 'intermediate' %}selected{% endif %}>Intermediate</option>
-                                    <option value="advanced" {% if form.experience_level.value == 'advanced' %}selected{% endif %}>Advanced</option>
-                                </select>
-                            </div>
-                            <div class="form-group">
-                                <label for="interests" class="form-label">Interests</label>
-                                <div class="input-wrapper">
-                                    <span class="input-icon">❤️</span>
-                                    <input type="text" class="form-control settings-input" id="interests" name="interests" value="{{ form.interests.value|default_if_none:'' }}" placeholder="e.g., Web Development, AI">
-                                </div>
-                            </div>
-                            <div class="form-group">
-                                <label for="skills" class="form-label">Skills</label>
-                                <div class="input-wrapper">
-                                    <span class="input-icon">🛠️</span>
-                                    <input type="text" class="form-control settings-input" id="skills" name="skills" value="{{ form.skills.value|default_if_none:'' }}" placeholder="e.g., Python, JavaScript">
-                                </div>
-                            </div>
-                            <div class="form-check">
-                                <input type="checkbox" class="form-check-input" id="mentor" name="mentor" {% if form.mentor.value %}checked{% endif %}>
-                                <label class="form-check-label" for="mentor">Available as a Mentor</label>
-                            </div>
-                        </div>
-                    </div>
-                   <!-- Form Buttons -->
-<div class="d-flex justify-content-between">
-    <form method="POST" action="{% url 'profile_update' pk=user.profile.pk %}">
-        {% csrf_token %}
-        {{ form.as_p }}
-        <button type="submit" class="btn btn-primary">Save Changes</button>
-    </form>
+                <h4>💼 Experience Level</h4>
+                <p>{{ profile.experience_level|default:"Not specified" }}</p>
 
-    <a href="{% url 'account_profile' pk=user.profile.pk %}" class="btn btn-secondary cancel-btn">Cancel</a>
-</div>
+                <h4>🔧 Skills</h4>
+                <p>{{ profile.skills|default:"Not specified" }}</p>
 
-                    
-                </form>
+                <h4>📌 Interests</h4>
+                <p>{{ profile.interests|default:"Not specified" }}</p>
+
+                <h4>🌐 Social Links</h4>
+                <p><a href="{{ profile.linkedin }}" target="_blank">LinkedIn</a></p>
+                <p><a href="{{ profile.github }}" target="_blank">GitHub</a></p>
+                <p><a href="{{ profile.website }}" target="_blank">Website</a></p>
             </div>
         </div>
     </div>
