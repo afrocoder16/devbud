@@ -1,185 +1,101 @@
-/* Basic styles */
+/* ========================================================================= */
+/* Basic Styles for the Entire Application */
+/* ========================================================================= */
+/* Body Background */
 body {
-    font-family: 'Arial', sans-serif;
-    background-color: #f8f9fa;
-    color: #212529;
+  background: linear-gradient(90deg, rgba(255,255,255,1) 0%, rgba(201,214,255,1) 100%);
+  height: 100vh;
+
 }
 
+
+/* Header */
 header {
-    background-color: #343a40;
+  background: #fff;
+  padding: 0.5rem 1rem;
+  border-bottom: 1px solid #E5E5E5;
 }
 
+/* Footer Fix */
 footer {
-    background-color: #343a40;
-    color: white;
+  background: #fff;
+  color: #666;
+  text-align: center;
+  padding: 1rem 0;
+  border-top: 1px solid #E5E5E5;
+  font-size: 0.85rem;
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  width: 100%;
 }
 
 .navbar {
-    padding: 1rem;
+    padding: 0.5rem 1rem; /* Minimal padding */
+    display: flex;
+    justify-content: space-between; /* Space out logo and links */
+    align-items: center;
 }
 
 .navbar-brand {
-    font-size: 1.5rem;
-    font-weight: bold;
-    color: white !important;
+    font-size: 1.2rem; /* Smaller logo size like WakaTime */
+    font-weight: 700;
+    color: #000000 !important; /* Black logo text */
+    text-decoration: none;
+}
+
+.navbar-brand:hover {
+    color: #000000 !important; /* No color change on hover to match WakaTime */
 }
 
 .nav-link {
-    color: white !important;
+    color: #000000 !important; /* Black links */
+    font-weight: 400;
+    font-size: 0.9rem; /* Smaller font size */
+    margin-left: 1.5rem; /* Space between links */
+    text-decoration: none;
+    transition: color 0.3s ease;
+}
+
+.nav-link:hover {
+    color: #1A3C5E !important; /* Blue on hover like WakaTime links */
+}
+
+.nav-link.sign-up {
+    color: #FFFFFF !important; /* White text for the Sign Up button */
+    background: #F5A623; /* Orange background */
+    padding: 0.5rem 1rem;
+    border-radius: 4px;
+    font-weight: 500;
+    transition: background 0.3s ease;
+}
+
+.nav-link.sign-up:hover {
+    background: #E69500; /* Slightly darker orange on hover */
+    color: #FFFFFF !important;
 }
 
 .dropdown-menu {
-    background-color: #343a40;
+    background: #FFFFFF; /* White background for dropdown */
+    border: 1px solid #E5E5E5; /* Subtle border */
+    border-radius: 4px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
 }
 
 .dropdown-item {
-    color: white;
-}
-
-/* Dark mode styles */
-body.dark-mode {
-    background-color: #212529;
-    color: #f8f9fa;
-}
-
-body.dark-mode header {
-    background-color: #121212;
-}
-
-body.dark-mode footer {
-    background-color: #121212;
-}
-
-body.dark-mode .navbar {
-    background-color: #121212;
-}
-
-body.dark-mode .nav-link {
-    color: #f8f9fa !important;
-}
-
-body.dark-mode .dropdown-menu {
-    background-color: #121212;
-}
-
-body.dark-mode .dropdown-item {
-    color: #f8f9fa;
-}
-
-/* Login Page Specific Styles */
-.login-container {
-    min-height: 100vh;
-    background: linear-gradient(135deg, #1e3c72 0%, #2a5298 100%);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    padding: 2rem;
-}
-
-.login-card {
-    border: none;
-    border-radius: 15px;
-    background: rgba(255, 255, 255, 0.95);
-    backdrop-filter: blur(10px);
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
-}
-
-.login-card:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
-}
-
-.login-logo {
-    width: 80px;
-    margin-bottom: 1rem;
-}
-
-.login-title {
-    font-size: 1.75rem;
-    font-weight: 700;
-    color: #1e3c72;
-}
-
-.login-subtitle {
-    font-size: 1rem;
-    color: #6c757d;
-}
-
-.form-group {
-    position: relative;
-}
-
-.input-wrapper {
-    position: relative;
-    display: flex;
-    align-items: center;
-}
-
-.input-icon {
-    position: absolute;
-    left: 10px;
-    font-size: 1.2rem;
-    color: #6c757d;
-}
-
-.login-input {
-    padding-left: 40px;
-    border-radius: 10px;
-    border: 1px solid #ced4da;
-    transition: border-color 0.3s ease, box-shadow 0.3s ease;
-}
-
-.login-input:focus {
-    border-color: #2a5298;
-    box-shadow: 0 0 5px rgba(42, 82, 152, 0.3);
-    outline: none;
-}
-
-.login-btn {
-    background: linear-gradient(90deg, #2a5298, #1e3c72);
-    border: none;
-    border-radius: 10px;
-    padding: 0.75rem;
-    font-size: 1.1rem;
-    font-weight: 600;
-    transition: background 0.3s ease, transform 0.3s ease;
-}
-
-.login-btn:hover {
-    background: linear-gradient(90deg, #1e3c72, #2a5298);
-    transform: scale(1.02);
-}
-
-.forgot-password {
+    color: #000000; /* Black text */
     font-size: 0.9rem;
-    color: #2a5298;
-    text-decoration: none;
-    transition: color 0.3s ease;
+    transition: background 0.3s ease;
 }
 
-.forgot-password:hover {
-    color: #1e3c72;
-    text-decoration: underline;
+.dropdown-item:hover {
+    background: #F5F5F5; /* Light gray on hover */
+    color: #1A3C5E; /* Blue text on hover */
 }
 
-.register-prompt {
-    font-size: 0.9rem;
-    color: #6c757d;
-}
-
-.register-link {
-    color: #2a5298;
-    text-decoration: none;
-    font-weight: 600;
-    transition: color 0.3s ease;
-}
-
-.register-link:hover {
-    color: #1e3c72;
-    text-decoration: underline;
-}
-
-/* Fade-in animation */
+/* ========================================================================= */
+/* General Animations */
+/* ========================================================================= */
 @keyframes fadeIn {
     from {
         opacity: 0;
@@ -191,103 +107,371 @@ body.dark-mode .dropdown-item {
     }
 }
 
-.login-form {
-    animation: fadeIn 0.5s ease forwards;
-}
-
-/* Register Page Specific Styles */
-.register-container {
+/* ========================================================================= */
+/* Landing Page Styles (index.html or home.html) */
+/* ========================================================================= */
+.landing-container {
     min-height: 100vh;
-    background: linear-gradient(135deg, #1e3c72 0%, #2a5298 100%);
+    background: #FFFFFF; /* White background to match the new body style */
     display: flex;
-    align-items: center;
+    flex-direction: column;
     justify-content: center;
+    align-items: center;
+    text-align: center;
     padding: 2rem;
+    position: relative;
 }
 
-.register-card {
-    border: none;
-    border-radius: 15px;
-    background: rgba(255, 255, 255, 0.95);
-    backdrop-filter: blur(10px);
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
+/* Remove the gradient overlay since WakaTime uses a plain background */
+.landing-container::before {
+    display: none; /* Remove the pseudo-element */
 }
 
-.register-card:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
-}
-
-.register-logo {
-    width: 80px;
-    margin-bottom: 1rem;
-}
-
-.register-title {
-    font-size: 1.75rem;
+.landing-container h1 {
+    font-size: 2.5rem; /* Slightly smaller for a cleaner look */
     font-weight: 700;
-    color: #1e3c72;
+    color: #1A3C5E; /* Blue to match the WakaTime theme */
+    margin-bottom: 1rem;
+    animation: fadeIn 1s ease forwards;
 }
 
-.register-subtitle {
-    font-size: 1rem;
-    color: #6c757d;
-}
-
-.register-input {
-    padding-left: 40px;
-    border-radius: 10px;
-    border: 1px solid #ced4da;
-    transition: border-color 0.3s ease, box-shadow 0.3s ease;
-}
-
-.register-input:focus {
-    border-color: #2a5298;
-    box-shadow: 0 0 5px rgba(42, 82, 152, 0.3);
-    outline: none;
-}
-
-.register-btn {
-    background: linear-gradient(90deg, #2a5298, #1e3c72);
-    border: none;
-    border-radius: 10px;
-    padding: 0.75rem;
+.landing-container p {
     font-size: 1.1rem;
-    font-weight: 600;
-    transition: background 0.3s ease, transform 0.3s ease;
+    color: #000000; /* Black text for readability */
+    margin-bottom: 2rem;
+    max-width: 600px;
+    animation: fadeIn 1.2s ease forwards;
 }
 
-.register-btn:hover {
-    background: linear-gradient(90deg, #1e3c72, #2a5298);
-    transform: scale(1.02);
+.landing-container .btn-primary {
+    background: #F5A623; /* Orange button like WakaTime’s Sign Up */
+    border: none;
+    border-radius: 4px; /* Less rounded corners */
+    padding: 0.75rem 2rem;
+    font-size: 1rem;
+    font-weight: 500;
+    color: #FFFFFF;
+    transition: background 0.3s ease;
+    animation: fadeIn 1.4s ease forwards;
 }
 
-.login-prompt {
-    font-size: 0.9rem;
-    color: #6c757d;
+.landing-container .btn-primary:hover {
+    background: #E69500; /* Darker orange on hover */
 }
 
-.login-link {
-    color: #2a5298;
+.landing-container .footer-links {
+    position: absolute;
+    bottom: 1rem;
+    z-index: 1;
+}
+
+.landing-container .footer-links a {
+    color: #666666; /* Gray links like WakaTime footer */
     text-decoration: none;
-    font-weight: 600;
+    margin: 0 0.75rem;
+    font-size: 0.85rem;
     transition: color 0.3s ease;
 }
 
-.login-link:hover {
-    color: #1e3c72;
-    text-decoration: underline;
+.landing-container .footer-links a:hover {
+    color: #1A3C5E; /* Blue on hover like WakaTime */
 }
 
-/* Fade-in animation (reused from login) */
-.register-form {
-    animation: fadeIn 0.5s ease forwards;
+/* Global Reset & Font */
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@400;700&display=swap");
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Poppins", sans-serif;
 }
 
+
+
+/* ---------------------------------------------------------------- */
+/* Shared Container for Login & Register Pages */
+/* ---------------------------------------------------------------- */
+.login-container,
+.register-container {
+  width: 850px;
+  height: 550px;
+  background: #fff;
+  border-radius: 30px;
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  overflow: hidden;
+}
+
+/* ===== LOGIN PAGE DESIGN STYLES ===== */
+
+/* Outer container */
+.login-container {
+    width: 850px;
+    height: 550px;
+    background: #fff;
+    border-radius: 30px;
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    overflow: hidden;
+  }
+  
+  /* Flex container: split into two halves */
+  .login-card {
+    display: flex;
+    width: 100%;
+    height: 100%;
+  }
+  
+  /* Left half: for welcome message */
+  .login-card-header {
+    width: 50%;
+    background-color: #7494ec;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    color: #fff;
+    padding: 20px;
+    border-top-left-radius: 30px;
+    border-bottom-left-radius: 30px;
+  }
+  .login-title {
+    font-size: 36px;
+    font-weight: bolder;
+    margin: 0;
+  }
+  .login-subtitle {
+    font-size: 14.5px;
+    margin-top: 1rem;
+  }
+  
+  /* Right half: for the form */
+  .login-card-body {
+    width: 50%;
+    padding: 40px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    box-sizing: border-box;
+  }
+  
+  /* Form Elements */
+  .login-form {
+    text-align: center;
+  }
+  .form-group {
+    margin-bottom: 1.5rem;
+  }
+  .input-wrapper {
+    position: relative;
+  }
+  .input-icon {
+    position: absolute;
+    right: 10px;
+    top: 50%;
+    transform: translateY(-50%);
+    font-size: 20px;
+  }
+  .login-input {
+    width: 100%;
+    padding: 13px 50px 13px 20px;
+    margin: 10px 0;
+    background: #efefef;
+    border: none;
+    border-radius: 8px;
+    font-size: 16px;
+  }
+  .login-input:focus {
+    outline: none;
+  }
+  .login-btn {
+    width: 100%;
+    height: 48px;
+    background: #7494ec;
+    color: #fff;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 16px;
+    font-weight: bold;
+    margin-top: 1rem;
+  }
+  .forgot-password {
+    display: block;
+    text-align: right;
+    margin-top: 1rem;
+    color: #000;
+    font-size: 14px;
+  }
+  .register-prompt {
+    text-align: center;
+    margin-top: 1.5rem;
+    font-size: 14px;
+    color: #000;
+  }
+  .register-link {
+    color: #7494ec;
+    text-decoration: none;
+    font-weight: bold;
+  }
+  
+  .social-text {
+    margin: 15px 0;
+    font-size: 14px;
+    color: #000;
+  }
+  
+  .social-login {
+    margin-bottom: 1.5rem;
+  }
+  
+  .social-login a {
+    display: inline-block;
+    margin: 0 8px;
+    border: 2px solid #ccc;
+    padding: 6px 5px 0 5px;
+    text-align: center;
+    border-radius: 8px;
+    font-size: 24px;
+    width: 17%;
+    height: 50px;
+    color: #000; /* Or any color you prefer for the icons */
+  }
+  
+  .social-login a {
+    display: inline-block;
+    margin: 0 8px;
+    border: 2px solid #ccc;
+    padding: 6px 5px 0 5px;
+    text-align: center;
+    border-radius: 8px;
+    font-size: 24px;
+    width: 50px;
+    height: 50px;
+    color: #000;
+    transition: background 0.3s ease;
+  }
+  
+  .social-login a:hover {
+    background: #f5f5f5;
+  }
+  
+  /* =========================== */
+  /* REGISTER PAGE DESIGN STYLES */
+  /* =========================== */
+  
+.register-container {
+    width: 850px;
+    height: 550px;
+    background: #fff;
+    border-radius: 30px;
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    overflow: hidden;
+  }
+  
+  .register-card {
+    width: 100%;
+    height: 100%;
+    display: flex; /* Splits header & body side by side */
+  }
+  
+  /* Left side (blue) */
+  .register-card-header {
+    width: 50%;
+    height: 100%;
+    background-color: #7494ec;
+    border-radius: 30px 30% 30% 30px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    color: #fff;
+    padding: 20px;
+  }
+  
+  .register-card-header .navbar-brand {
+    font-size: 28px;
+    margin-bottom: 1rem;
+  }
+  .register-card-header h2 {
+    font-size: 36px;
+    font-weight: bolder;
+    margin-bottom: 0.5rem;
+  }
+  .register-card-header p {
+    font-size: 14.5px;
+    margin-bottom: 1rem;
+  }
+  
+  /* Right side (form fields) */
+  .register-card-body {
+    width: 50%;
+    height: 100%;
+    padding: 40px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    box-sizing: border-box;
+  }
+  
+  .register-card-body .form-group {
+    margin-bottom: 1.5rem;
+  }
+  
+  .register-card-body input {
+    width: 100%;
+    padding: 10px 10px 20px 20px;
+    margin: -5px 0;
+    background: #efefef;
+    border: none;
+    border-radius: 8px;
+    font-size: 16px;
+  }
+  
+  .register-card-body input:focus {
+    outline: none;
+  }
+  
+  .register-btn {
+    width: 100%;
+    height: 48px;
+    background: #7494ec;
+    color: #fff;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 16px;
+    font-weight: bold;
+    margin-top: 1rem;
+  }
+  
+  .login-prompt {
+    text-align: center;
+    margin-top: 1.5rem;
+    font-size: 14px;
+    color: #000;
+  }
+  
+  .register-link {
+    color: #7494ec;
+    text-decoration: none;
+    font-weight: bold;
+  }
+  
+/* ========================================================================= */
 /* Settings Page Styles */
+/* ========================================================================= */
 .settings-container {
     min-height: 100vh;
-    background: linear-gradient(135deg, #1e3c72 0%, #2a5298 100%);
+    background: linear-gradient(135deg, #FF6F61, #6B48FF);
     padding: 2rem;
 }
 
@@ -302,18 +486,18 @@ body.dark-mode .dropdown-item {
 .sidebar-title {
     font-size: 1.25rem;
     font-weight: 600;
-    color: #1e3c72;
+    color: #FF6F61;
     margin-bottom: 1rem;
 }
 
 .nav-link {
-    color: #6c757d;
+    color: #2D3748;
     transition: color 0.3s ease;
 }
 
 .nav-link:hover,
 .nav-link.active {
-    color: #2a5298;
+    color: #6B48FF;
     font-weight: 600;
 }
 
@@ -336,7 +520,7 @@ body.dark-mode .dropdown-item {
 .section-title {
     font-size: 1.5rem;
     font-weight: 600;
-    color: #1e3c72;
+    color: #FF6F61;
     margin-bottom: 1.5rem;
 }
 
@@ -356,13 +540,13 @@ body.dark-mode .dropdown-item {
 .settings-input {
     padding-left: 40px;
     border-radius: 10px;
-    border: 1px solid #ced4da;
+    border: 1px solid #E2E8F0;
     transition: border-color 0.3s ease, box-shadow 0.3s ease;
 }
 
 .settings-input:focus {
-    border-color: #2a5298;
-    box-shadow: 0 0 5px rgba(42, 82, 152, 0.3);
+    border-color: #FF6F61;
+    box-shadow: 0 0 5px rgba(255, 111, 97, 0.3);
     outline: none;
 }
 
@@ -370,26 +554,19 @@ body.dark-mode .dropdown-item {
     text-align: center;
 }
 
-.profile-pic {
-    width: 100px;
-    height: 100px;
-    object-fit: cover;
-    border: 3px solid #2a5298;
-    margin-bottom: 1rem;
-}
-
 .settings-btn {
-    background: linear-gradient(90deg, #2a5298, #1e3c72);
+    background: linear-gradient(90deg, #FF6F61, #6B48FF);
     border: none;
     border-radius: 10px;
     padding: 0.75rem 2rem;
     font-size: 1.1rem;
     font-weight: 600;
+    color: white;
     transition: background 0.3s ease, transform 0.3s ease;
 }
 
 .settings-btn:hover {
-    background: linear-gradient(90deg, #1e3c72, #2a5298);
+    background: linear-gradient(90deg, #6B48FF, #FF6F61);
     transform: scale(1.02);
 }
 
@@ -397,15 +574,207 @@ body.dark-mode .dropdown-item {
     border-radius: 10px;
     padding: 0.75rem 2rem;
     font-size: 1.1rem;
+    background: #E2E8F0;
+    color: #2D3748;
     transition: background 0.3s ease, transform 0.3s ease;
 }
 
 .cancel-btn:hover {
-    background: #5c636a;
+    background: #D1D9E6;
     transform: scale(1.02);
 }
 
-/* Fade-in animation */
 .settings-form {
     animation: fadeIn 0.5s ease forwards;
 }
+
+/* ========================================================================= */
+/* Profile Page Styles for profile.html - Edit this section for profile.html */
+/* ========================================================================= */
+.profile-container {
+    min-height: 100vh;
+    background: url('https://www.transparenttextures.com/patterns/cubes.png'), #F5F7FA;
+    padding: 2rem;
+    position: relative;
+    overflow: hidden;
+}
+
+/* Subtle overlay for depth */
+.profile-container::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(135deg, rgba(255, 111, 97, 0.1), rgba(107, 72, 255, 0.1));
+    z-index: 0;
+}
+
+.profile-sidebar {
+    border-radius: 15px;
+    background: rgba(255, 255, 255, 0.95);
+    backdrop-filter: blur(10px);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    position: sticky;
+    top: 2rem;
+    z-index: 1;
+}
+
+.profile-sidebar:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+}
+
+/* Profile picture styles */
+.profile-sidebar .profile-pic {
+    width: 100px !important;
+    height: 100px !important;
+    max-width: 100px !important;
+    max-height: 100px !important;
+    object-fit: cover;
+    border: 4px solid #FF6F61;
+    margin-bottom: 1rem;
+    transition: transform 0.3s ease, border-color 0.3s ease;
+}
+
+/* Hover effect for profile picture */
+.profile-sidebar .profile-pic:hover {
+    transform: scale(1.05);
+    border-color: #6B48FF;
+}
+
+.profile-username {
+    font-size: 1.5rem;
+    font-weight: 600;
+    color: #FF6F61;
+    margin-bottom: 0.5rem;
+    transition: color 0.3s ease;
+}
+
+/* Hover effect for username */
+.profile-username:hover {
+    color: #6B48FF;
+}
+
+.profile-bio {
+    font-size: 0.9rem;
+    color: #2D3748;
+    font-style: italic;
+    margin-bottom: 1rem;
+}
+
+/* Style the Edit Profile button */
+.profile-sidebar .btn-primary {
+    background: linear-gradient(90deg, #FF6F61, #6B48FF);
+    border: none;
+    border-radius: 10px;
+    padding: 0.5rem 1.5rem;
+    font-size: 1rem;
+    font-weight: 600;
+    color: white;
+    transition: background 0.3s ease, transform 0.3s ease;
+}
+
+.profile-sidebar .btn-primary:hover {
+    background: linear-gradient(90deg, #6B48FF, #FF6F61);
+    transform: scale(1.02);
+}
+
+.profile-content {
+    padding: 1.5rem;
+    background: rgba(255, 255, 255, 0.95);
+    border-radius: 15px;
+    backdrop-filter: blur(10px);
+    z-index: 1;
+    position: relative;
+}
+
+/* Decorative underline for the name */
+.profile-content h2 {
+    font-size: 2rem;
+    font-weight: 700;
+    color: #FF6F61;
+    margin-bottom: 1.5rem;
+    position: relative;
+    display: inline-block;
+}
+
+.profile-content h2::after {
+    content: '';
+    position: absolute;
+    bottom: -5px;
+    left: 0;
+    width: 50%;
+    height: 3px;
+    background: linear-gradient(90deg, #FF6F61, #6B48FF);
+    border-radius: 2px;
+}
+
+.profile-content h4 {
+    font-size: 1.25rem;
+    font-weight: 600;
+    color: #6B48FF;
+    margin-top: 1.5rem;
+    margin-bottom: 0.5rem;
+    border-left: 4px solid #FF6F61;
+    padding-left: 10px;
+}
+
+/* Style profile details with a card-like appearance */
+.profile-content p {
+    font-size: 1rem;
+    color: #2D3748;
+    background: rgba(255, 255, 255, 0.95);
+    padding: 0.5rem 1rem;
+    border-radius: 8px;
+    margin-bottom: 0.5rem;
+    transition: background 0.3s ease, transform 0.3s ease;
+}
+
+/* Hover effect for profile details */
+.profile-content p:hover {
+    background: rgba(255, 209, 102, 0.2); /* Soft yellow tint */
+    transform: translateY(-2px);
+}
+
+/* Style social links with icons */
+.profile-content a {
+    color: #6B48FF;
+    text-decoration: none;
+    font-weight: 500;
+    transition: color 0.3s ease, transform 0.3s ease;
+    display: inline-flex;
+    align-items: center;
+    margin-right: 1rem;
+}
+
+/* Add icons before social links */
+.profile-content a[href*="linkedin"]::before {
+    content: '🔗';
+    margin-right: 5px;
+}
+
+.profile-content a[href*="github"]::before {
+    content: '🐙';
+    margin-right: 5px;
+}
+
+.profile-content a[href*="website"]::before {
+    content: '🌐';
+    margin-right: 5px;
+}
+
+.profile-content a:hover {
+    color: #FF6F61;
+    transform: translateY(-2px);
+}
+
+/* Add animation for the profile content */
+.profile-content {
+    animation: fadeIn 0.5s ease forwards;
+}
+
+/* ========================================================================= */
+/* End of Profile Page Styles for profile.html */
+/* ========================================================================= */
