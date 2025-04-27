@@ -12,7 +12,7 @@ urlpatterns = [
     path('projects/', include('projects.urls')),
     path('messaging/', include('messaging.urls')),
     path('community/', include('community.urls')),
-    path('feed/', include('feed.urls')),
+    # path('feed/', include('feed.urls')),
     path('favicon.ico', RedirectView.as_view(url='/static/favicon.ico', permanent=True)),
 ]
 

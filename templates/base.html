@@ -28,7 +28,7 @@
                         <li class="nav-item"><a class="nav-link" href="{% url 'project_list' %}">Projects</a></li>
                         <li class="nav-item"><a class="nav-link" href="{% url 'inbox' %}">Messages</a></li>
                         <li class="nav-item"><a class="nav-link" href="{% url 'community_feed' %}">Community</a></li>
-                        <li class="nav-item"><a class="nav-link" href="{% url 'public_feed' %}">Feed</a></li>
+                        <!-- <li class="nav-item"><a class="nav-link" href="{% url 'public_feed' %}">Feed</a></li> -->
 
                     </ul>
 
@@ -41,7 +41,7 @@
                                 </a>
                                 <ul class="dropdown-menu" aria-labelledby="userDropdown">
                                     {% if user.is_authenticated and user.profile %}
-            <li><a class="dropdown-item" <a href="{% url 'account_profile' pk=user.profile.pk %}">Profile</a> </li>
+            <li><a class="dropdown-item" href="{% url 'account_profile' pk=user.profile.pk %}">Profile</a> </li>
             {% endif %}
                                     <form id="logout-form" method="post" action="{% url 'account_logout' %}" style="display: none;">
                                         {% csrf_token %}
