@@ -1,0 +1,58 @@
+[
+    {
+      "model": "community.event",
+      "pk": 1,
+      "fields": {
+        "title": "Intro to Django Workshop",
+        "description": "A hands-on workshop covering the basics of Django.",
+        "event_date": "2025-05-10T10:00:00Z",
+        "created_by": 1,
+        "created_at": "2025-04-14T09:00:00Z"
+      }
+    },
+    {
+      "model": "community.event",
+      "pk": 2,
+      "fields": {
+        "title": "API Design Deep Dive",
+        "description": "Learn REST & GraphQL API best practices.",
+        "event_date": "2025-05-15T14:30:00Z",
+        "created_by": 1,
+        "created_at": "2025-04-14T09:05:00Z"
+      }
+    },
+    {
+      "model": "community.event",
+      "pk": 3,
+      "fields": {
+        "title": "Open-Source Contribution Sprint",
+        "description": "Pair-programming session for first-time OSS contributors.",
+        "event_date": "2025-05-20T16:00:00Z",
+        "created_by": 2,
+        "created_at": "2025-04-14T09:10:00Z"
+      }
+    },
+    {
+      "model": "community.event",
+      "pk": 4,
+      "fields": {
+        "title": "Frontend Framework Showdown",
+        "description": "Compare React, Vue, and Svelte in real-time coding demos.",
+        "event_date": "2025-06-01T11:00:00Z",
+        "created_by": 2,
+        "created_at": "2025-04-14T09:15:00Z"
+      }
+    },
+    {
+      "model": "community.event",
+      "pk": 5,
+      "fields": {
+        "title": "DevOps 101: CI/CD Workshop",
+        "description": "Automate your deployments with GitHub Actions & Docker.",
+        "event_date": "2025-06-05T13:00:00Z",
+        "created_by": 3,
+        "created_at": "2025-04-14T09:20:00Z"
+      }
+    }
+  ]
+  

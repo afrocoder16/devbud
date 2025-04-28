@@ -1,0 +1,133 @@
+[
+    {
+      "model": "projects.project",
+      "pk": 1,
+      "fields": {
+        "title": "DevBud Dashboard",
+        "description": "A central hub for all DevBud activity: stats, notifications, and quick links.",
+        "tech_stack": "Django, PostgreSQL, Chart.js, Tailwind CSS",
+        "github_link": "https://github.com/your-org/devbud-dashboard",
+        "website_link": "https://devbud.app/dashboard",
+        "created_by": 1,
+        "created_at": "2025-04-15T09:00:00Z"
+      }
+    },
+    {
+      "model": "projects.project",
+      "pk": 2,
+      "fields": {
+        "title": "Real-time Chat",
+        "description": "A live messaging app using WebSockets so developers can chat in channels.",
+        "tech_stack": "Django Channels, Redis, WebSockets, React",
+        "github_link": "https://github.com/your-org/devbud-chat",
+        "website_link": "https://chat.devbud.app",
+        "created_by": 1,
+        "created_at": "2025-04-15T09:10:00Z"
+      }
+    },
+    {
+      "model": "projects.project",
+      "pk": 3,
+      "fields": {
+        "title": "Collaboration Board",
+        "description": "Kanban-style board for managing team tasks and pull-request feedback.",
+        "tech_stack": "Django REST Framework, Vue.js, PostgreSQL",
+        "github_link": "https://github.com/your-org/devbud-board",
+        "website_link": "https://board.devbud.app",
+        "created_by": 1,
+        "created_at": "2025-04-15T09:20:00Z"
+      }
+    },
+    {
+      "model": "projects.project",
+      "pk": 4,
+      "fields": {
+        "title": "Snippet Library",
+        "description": "Share and search reusable code snippets across languages.",
+        "tech_stack": "Django, Elasticsearch, Bootstrap",
+        "github_link": "https://github.com/your-org/devbud-snippets",
+        "website_link": "https://snippets.devbud.app",
+        "created_by": 1,
+        "created_at": "2025-04-15T09:30:00Z"
+      }
+    },
+    {
+      "model": "projects.project",
+      "pk": 5,
+      "fields": {
+        "title": "Community Forum",
+        "description": "Discussion boards for Q&A, announcements, and peer support.",
+        "tech_stack": "Django, PostgreSQL, jQuery",
+        "github_link": "https://github.com/your-org/devbud-forum",
+        "website_link": "https://community.devbud.app",
+        "created_by": 1,
+        "created_at": "2025-04-15T09:40:00Z"
+      }
+    },
+    {
+      "model": "projects.project",
+      "pk": 6,
+      "fields": {
+        "title": "Learning Resources Hub",
+        "description": "Curated tutorials, courses, and articles for all levels.",
+        "tech_stack": "Django, SQLite, Tailwind CSS",
+        "github_link": "https://github.com/your-org/devbud-learning",
+        "website_link": "https://learn.devbud.app",
+        "created_by": 1,
+        "created_at": "2025-04-15T09:50:00Z"
+      }
+    },
+    {
+      "model": "projects.project",
+      "pk": 7,
+      "fields": {
+        "title": "Hackathon Scheduler",
+        "description": "Track upcoming hackathons, deadlines, and team sign-ups.",
+        "tech_stack": "Django, Celery, Redis, React",
+        "github_link": "https://github.com/your-org/devbud-hackathon",
+        "website_link": "https://hackathons.devbud.app",
+        "created_by": 1,
+        "created_at": "2025-04-15T10:00:00Z"
+      }
+    },
+    {
+      "model": "projects.project",
+      "pk": 8,
+      "fields": {
+        "title": "Job Board Aggregator",
+        "description": "Collects developer job postings from multiple sources into one feed.",
+        "tech_stack": "Django, BeautifulSoup, PostgreSQL, Bootstrap",
+        "github_link": "https://github.com/your-org/devbud-jobs",
+        "website_link": "https://jobs.devbud.app",
+        "created_by": 1,
+        "created_at": "2025-04-15T10:10:00Z"
+      }
+    },
+    {
+      "model": "projects.project",
+      "pk": 9,
+      "fields": {
+        "title": "Mentorship Matcher",
+        "description": "Connects junior devs with experienced mentors based on skills.",
+        "tech_stack": "Django, GraphQL, Apollo Client",
+        "github_link": "https://github.com/your-org/devbud-mentor",
+        "website_link": "https://mentor.devbud.app",
+        "created_by": 1,
+        "created_at": "2025-04-15T10:20:00Z"
+      }
+    },
+    {
+      "model": "projects.project",
+      "pk": 10,
+      "fields": {
+        "title": "Analytics Dashboard",
+        "description": "Visualizes user engagement, project trends, and forum activity.",
+        "tech_stack": "Django, pandas, Plotly.js, Tailwind CSS",
+        "github_link": "https://github.com/your-org/devbud-analytics",
+        "website_link": "https://analytics.devbud.app",
+        "created_by": 1,
+        "created_at": "2025-04-15T10:30:00Z"
+      }
+    }
+  ]
+  
