@@ -7,6 +7,8 @@ from .models import Profile
 from .forms import ProfileForm, RegisterForm
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.http import Http404
+from projects.models import Project
+from community.models import Hackathon, Event
 
 # ✅ User Registration
 def register(request):
@@ -25,7 +27,7 @@ def register(request):
 # ✅ User Home (Redirects to Feed)
 @login_required
 def user_home(request):
-    return render(request, 'feed/feed.html', {'user': request.user})
+    return render(request, 'home.html', {'user': request.user})
 
 
 # ✅ Account Settings (Additional Settings Page)
@@ -88,6 +90,15 @@ class ProfileDeleteView(LoginRequiredMixin, DeleteView):
     success_url = reverse_lazy('user_home')
 
 
-# ✅ Public Feed (For Non-Logged-In Users)
-def public_feed(request):
-    return render(request, 'feed/public_feed.html')
+# home page view (for the root URL)
+def home(request):
+    projects = Project.objects.all()[:6]  # limit to 6 projects for homepage
+    hackathons = Hackathon.objects.all()[:3]  # limit to 3
+    events = Event.objects.all()[:3]  # limit to 3
+
+    context = {
+        'projects': projects,
+        'hackathons': hackathons,
+        'events': events,
+    }
+    return render(request, 'home.html', context)

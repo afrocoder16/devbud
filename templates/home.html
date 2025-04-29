@@ -1,0 +1,98 @@
+{% extends 'base.html' %}
+{% block title %}Welcome to DevBud{% endblock %}
+
+{% block content %}
+<div class="container mt-4">
+    <h2 class="mb-3">Explore DevBud</h2>
+    <p class="mb-4">Welcome! Join the developer community, share projects, and collaborate.</p>
+
+    <!-- Trending Projects -->
+    <section class="mb-5">
+        <h3>🔥 Trending Projects</h3>
+        <div class="row">
+            {% for project in projects %}
+                <div class="col-md-4">
+                    <div class="card mb-4 shadow-sm">
+                        <div class="card-body">
+                            <h5 class="card-title">{{ project.title }}</h5>
+                            <p class="card-text">{{ project.description|truncatewords:15 }}</p>
+                            <a href="{% url 'project_detail' project.pk %}" class="btn btn-primary">View Project</a>
+                        </div>
+                    </div>
+                </div>
+            {% empty %}
+                <div class="col-12">
+                    <p class="text-muted">No trending projects found.</p>
+                </div>
+            {% endfor %}
+        </div>
+    </section>
+
+    <!-- Active Hackathons -->
+    <section class="mb-5">
+        <h3>🚀 Active Hackathons</h3>
+        <div class="row">
+            {% for hackathon in hackathons %}
+                <div class="col-md-4">
+                    <div class="card mb-4 shadow-sm">
+                        <div class="card-body">
+                            <h5 class="card-title">{{ hackathon.title }}</h5>
+                            <p class="card-text">{{ hackathon.description|truncatewords:15 }}</p>
+                            <a href="#" class="btn btn-success">View Hackathon</a>
+                        </div>
+                    </div>
+                </div>
+            {% empty %}
+                <div class="col-12">
+                    <p class="text-muted">No active hackathons right now.</p>
+                </div>
+            {% endfor %}
+        </div>
+    </section>
+
+    <!-- Upcoming Events -->
+    <section class="mb-5">
+        <h3>📅 Upcoming Events</h3>
+        <div class="row">
+            {% for event in events %}
+                <div class="col-md-4">
+                    <div class="card mb-4 shadow-sm">
+                        <div class="card-body">
+                            <h5 class="card-title">{{ event.title }}</h5>
+                            <p class="card-text">{{ event.description|truncatewords:15 }}</p>
+                            <a href="#" class="btn btn-info">View Event</a>
+                        </div>
+                    </div>
+                </div>
+            {% empty %}
+                <div class="col-12">
+                    <p class="text-muted">No upcoming events scheduled.</p>
+                </div>
+            {% endfor %}
+        </div>
+    </section>
+
+    <!-- Recent Community Posts -->
+    <section class="mb-5">
+        <h3>💬 Recent Community Posts</h3>
+        <div class="row">
+            {% for post in posts %}
+                <div class="col-md-4">
+                    <div class="card mb-4 shadow-sm">
+                        <div class="card-body">
+                            <h5 class="card-title">{{ post.title }}</h5>
+                            <p class="card-text">{{ post.content|truncatewords:15 }}</p>
+                            <p class="text-muted small">by {{ post.author.username }}</p>
+                            <a href="#" class="btn btn-secondary">Read More</a>
+                        </div>
+                    </div>
+                </div>
+            {% empty %}
+                <div class="col-12">
+                    <p class="text-muted">No community posts yet.</p>
+                </div>
+            {% endfor %}
+        </div>
+    </section>
+</div>
+{% endblock %}

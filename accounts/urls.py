@@ -5,7 +5,6 @@ from .views import (
     register,
     account_settings,
     user_home,
-    public_feed,
     ProfileListView,
     ProfileDetailView,
     ProfileCreateView,
@@ -31,5 +30,5 @@ urlpatterns = [
 
     # Home & Feeds
     path('home/', user_home, name='user_home'),
-    path('feed/', public_feed, name='public_feed'),
+    
 ]
