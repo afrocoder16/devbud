@@ -1,0 +1,38 @@
+{% extends 'base.html' %}
+
+{% block title %}Learning Resources - DevBud{% endblock %}
+
+{% block content %}
+<div class="container mt-5">
+    <div class="d-flex justify-content-between align-items-center mb-4">
+        <h2 class="text-info fw-bold">📚 Learning Resources</h2>
+        <form method="get" class="d-flex gap-2">
+            <input type="text" name="search" class="form-control" placeholder="Search title..." value="{{ request.GET.search }}">
+            <input type="text" name="tag" class="form-control" placeholder="Filter by tag..." value="{{ request.GET.tag }}">
+            <button type="submit" class="btn btn-outline-info">🔍</button>
+        </form>
+    </div>
+
+    <div class="list-group shadow-sm">
+        {% for resource in resources %}
+            <div class="list-group-item py-3 mb-2 rounded">
+                <h5>
+                    <a href="{% url 'resource_detail' resource.pk %}" class="text-decoration-none text-info">
+                        {{ resource.title }}
+                    </a>
+                </h5>
+                <p class="mb-1 text-muted">{{ resource.description|truncatewords:20 }}</p>
+                <small class="text-muted">
+                    Tags: {{ resource.tags }}<br>
+                    By {{ resource.posted_by.username }} • {{ resource.posted_at|date:"M d, Y" }}
+                </small>
+            </div>
+        {% empty %}
+            <p class="text-muted">No resources yet. <a href="{% url 'resource_create' %}">Add one</a>!</p>
+        {% endfor %}
+    </div>
+</div>
+
+<!-- Floating Create Resource Button -->
+<a href="{% url 'resource_create' %}" class="fab-post-create" title="Add Resource">+</a>
+{% endblock %}

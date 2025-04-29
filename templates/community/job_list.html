@@ -1,0 +1,33 @@
+{% extends 'base.html' %}
+
+{% block title %}Jobs - DevBud{% endblock %}
+
+{% block content %}
+<div class="container mt-5">
+    <div class="d-flex justify-content-between align-items-center mb-4">
+        <h2 class="text-success fw-bold">💼 Dev Job Board</h2>
+        <p class="text-muted mb-0">Post a job or find your next opportunity.</p>
+    </div>
+
+    <div class="list-group shadow-sm">
+        {% for job in jobs %}
+            <div class="list-group-item py-3 mb-2 rounded">
+                <h5>
+                    <a href="{% url 'job_detail' job.pk %}" class="text-decoration-none text-success fw-bold">
+                      {{ job.title }}
+                    </a>
+                  </h5>
+                  
+                <p class="mb-1 text-muted">{{ job.description|truncatewords:25 }}</p>
+                <p class="mb-0"><strong>Contact:</strong> {{ job.contact_info }}</p>
+                <small class="text-muted">Posted on {{ job.created_at|date:"M d, Y" }}</small>
+            </div>
+        {% empty %}
+            <p class="text-muted">No jobs yet. <a href="{% url 'job_create' %}">Post one</a>!</p>
+        {% endfor %}
+    </div>
+</div>
+
+<!-- Floating Create Job Button -->
+<a href="{% url 'job_create' %}" class="fab-post-create" title="Post Job">+</a>
+{% endblock %}

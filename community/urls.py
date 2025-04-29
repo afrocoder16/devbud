@@ -6,7 +6,8 @@ from .views import (
     HackathonListView, HackathonDetailView, HackathonCreateView, HackathonUpdateView, HackathonDeleteView,
     JobListView, JobDetailView, JobCreateView, JobUpdateView, JobDeleteView,
     LearningResourceListView, LearningResourceDetailView, LearningResourceCreateView, LearningResourceUpdateView, LearningResourceDeleteView,
-    ProgressTrackingListView, ProgressTrackingDetailView, ProgressTrackingCreateView, ProgressTrackingUpdateView, ProgressTrackingDeleteView, CommunityFeedView
+    ProgressTrackingListView, ProgressTrackingDetailView, ProgressTrackingCreateView, ProgressTrackingUpdateView, ProgressTrackingDeleteView, CommunityFeedView, CommunityPostDetailView,
+    like_post, dislike_post, CommunityPostCreateView, join_group, leave_group 
 )
 
 
@@ -20,7 +21,9 @@ urlpatterns = [
     path('groups/<int:pk>/', GroupDetailView.as_view(), name='group_detail'),
     path('groups/<int:pk>/update/', GroupUpdateView.as_view(), name='group_update'),
     path('groups/<int:pk>/delete/', GroupDeleteView.as_view(), name='group_delete'),
-    
+    path('groups/<int:pk>/join/', join_group, name='join_group'),
+    path('groups/<int:pk>/leave/', leave_group, name='leave_group'),
+
     # Events
     path('events/', EventListView.as_view(), name='event_list'),
     path('events/create/', EventCreateView.as_view(), name='event_create'),
@@ -48,7 +51,10 @@ urlpatterns = [
     path('resources/<int:pk>/', LearningResourceDetailView.as_view(), name='resource_detail'),
     path('resources/<int:pk>/update/', LearningResourceUpdateView.as_view(), name='resource_update'),
     path('resources/<int:pk>/delete/', LearningResourceDeleteView.as_view(), name='resource_delete'),
-    
+    path('resources/<int:pk>/', LearningResourceDetailView.as_view(), name='resource_detail'),
+    path('resources/<int:pk>/update/', LearningResourceUpdateView.as_view(), name='resource_update'),
+    path('resources/<int:pk>/delete/', LearningResourceDeleteView.as_view(), name='resource_delete'),
+
     # Progress Tracking
     path('progress/', ProgressTrackingListView.as_view(), name='progress_list'),
     path('progress/create/', ProgressTrackingCreateView.as_view(), name='progress_create'),
@@ -56,5 +62,15 @@ urlpatterns = [
     path('progress/<int:pk>/update/', ProgressTrackingUpdateView.as_view(), name='progress_update'),
     path('progress/<int:pk>/delete/', ProgressTrackingDeleteView.as_view(), name='progress_delete'),
 
+    # Community Feed
+        path('posts/<int:pk>/', CommunityPostDetailView.as_view(), name='post_detail'),
+        
+    #like and dislike post
+    path('posts/<int:pk>/like/', like_post, name='like_post'),
+    path('posts/<int:pk>/dislike/', dislike_post, name='dislike_post'),
+    
+    # Create a new post
+    path('posts/create/', CommunityPostCreateView.as_view(), name='post_create'),
 
+    
 ]

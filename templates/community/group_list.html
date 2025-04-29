@@ -1,0 +1,30 @@
+{% extends 'base.html' %}
+{% block title %}Groups - DevBud{% endblock %}
+
+{% block content %}
+<div class="container mt-5">
+    <div class="d-flex justify-content-between align-items-center mb-4">
+        <h2 class="text-primary fw-bold">👥 Developer Groups</h2>
+        <p class="text-muted mb-0">Find your crew. Learn, share, build together.</p>
+    </div>
+
+    <div class="list-group shadow-sm">
+        {% for group in groups %}
+            <div class="list-group-item py-3 mb-2 rounded">
+                <h5>
+                    <a class="text-decoration-none text-dark" href="{% url 'group_detail' group.pk %}">
+                        {{ group.name }}
+                    </a>
+                </h5>
+                <p class="mb-1 text-muted">{{ group.description|truncatewords:25 }}</p>
+                <small class="text-muted">👤 {{ group.members.count }} members • Created {{ group.created_at|date:"M d, Y" }}</small>
+            </div>
+        {% empty %}
+            <p class="text-muted">No groups yet. Be the first to <a href="{% url 'group_create' %}">start one</a>!</p>
+        {% endfor %}
+    </div>
+</div>
+
+<!-- Floating Button -->
+<a href="{% url 'group_create' %}" class="fab-post-create" title="Create Group">+</a>
+{% endblock %}

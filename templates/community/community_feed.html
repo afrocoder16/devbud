@@ -3,21 +3,50 @@
 {% block title %}Community - DevBud{% endblock %}
 
 {% block content %}
-<div class="container">
-    <h2>🌍 Community Feed</h2>
-    <p>Join the discussion, share ideas, and interact with fellow developers.</p>
+<div class="container mt-4 position-relative">
+    <div class="d-flex justify-content-between align-items-center mb-3">
+        <h2>🌍 Community Feed</h2>
+        <p class="text-muted">Join the discussion, share ideas, and interact with fellow developers.</p>
+    </div>
 
+    <!-- 🔹 Community Sections -->
+    <div class="row mb-4 g-3">
+        <div class="col-md-4">
+            <a href="{% url 'group_list' %}" class="hub-card text-decoration-none d-block p-4 rounded shadow-sm bg-white h-100 text-center">
+                <h5 class="text-primary fw-bold mb-2">👥 Groups</h5>
+                <p class="text-muted mb-0">Join interest-based dev circles.</p>
+            </a>
+        </div>
+        <div class="col-md-4">
+            <a href="{% url 'job_list' %}" class="hub-card text-decoration-none d-block p-4 rounded shadow-sm bg-white h-100 text-center">
+                <h5 class="text-success fw-bold mb-2">💼 Jobs</h5>
+                <p class="text-muted mb-0">Find or post dev jobs and gigs.</p>
+            </a>
+        </div>
+        <div class="col-md-4">
+            <a href="{% url 'resource_list' %}" class="hub-card text-decoration-none d-block p-4 rounded shadow-sm bg-white h-100 text-center">
+                <h5 class="text-info fw-bold mb-2">📚 Learning Resources</h5>
+                <p class="text-muted mb-0">Share tutorials, tools, or guides.</p>
+            </a>
+        </div>
+    </div>
+
+    <!-- 🔸 Community Posts Feed -->
     <div class="list-group">
         {% for post in posts %}
-            <div class="list-group-item">
-                <h5>{{ post.title }}</h5>
-                <p>{{ post.content|truncatewords:30 }}</p>
-                <small>By {{ post.author.username }} • {{ post.created_at|date:"M d, Y" }}</small>
-                <a href="{% url 'community_post_detail' post.pk %}" class="btn btn-sm btn-primary">Read More</a>
+            <div class="list-group-item mb-2 shadow-sm rounded">
+                <a class="h5 d-block text-decoration-none mb-1 text-primary" href="{% url 'post_detail' post.pk %}">
+                    {{ post.title }}
+                </a>
+                <p class="mb-1 text-dark">{{ post.content|truncatewords:30 }}</p>
+                <small class="text-muted">By {{ post.author.username }} • {{ post.created_at|date:"M d, Y" }}</small>
             </div>
         {% empty %}
-            <p>No posts yet. <a href="{#}">Start a discussion?</a></p>
+            <p>No posts yet. <a href="{% url 'post_create' %}">Start a discussion?</a></p>
         {% endfor %}
     </div>
 </div>
+
+<!-- Floating Create Post Button -->
+<a href="{% url 'post_create' %}" class="fab-post-create" title="Create Post">+</a>
 {% endblock %}

@@ -1,0 +1,23 @@
+{% extends 'base.html' %}
+{% block title %}{{ resource.title }} - DevBud{% endblock %}
+
+{% block content %}
+<div class="container mt-5">
+    <div class="card p-5 shadow-sm">
+        <h3 class="text-info fw-bold">{{ resource.title }}</h3>
+        <p class="text-muted">{{ resource.description }}</p>
+
+        <p><strong>Link:</strong> <a href="{{ resource.link }}" target="_blank">{{ resource.link }}</a></p>
+        <p><strong>Tags:</strong> {{ resource.tags }}</p>
+
+        <small class="text-muted">
+            Shared by {{ resource.posted_by.username }} on {{ resource.posted_at|date:"M d, Y" }}
+        </small>
+
+        <div class="mt-4 d-flex gap-2">
+            <a href="{% url 'resource_update' resource.pk %}" class="btn btn-outline-primary btn-sm">✏️ Edit</a>
+            <a href="{% url 'resource_delete' resource.pk %}" class="btn btn-outline-danger btn-sm">🗑 Delete</a>
+        </div>
+    </div>
+</div>
+{% endblock %}

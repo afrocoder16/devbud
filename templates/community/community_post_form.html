@@ -1,0 +1,28 @@
+{% extends 'base.html' %}
+
+{% block title %}Create Post - DevBud{% endblock %}
+
+{% block content %}
+<div class="container mt-5">
+    <div class="card p-5 shadow post-form-card animated fadeIn">
+        <h3 class="mb-4 text-primary fw-bold">📝 Create a New Community Post</h3>
+
+        <form method="post" class="needs-validation" novalidate>
+            {% csrf_token %}
+            <div class="mb-4">
+                {{ form.title.label_tag }}
+                {{ form.title }}  <!-- already styled via forms.py -->
+            </div>
+
+            <div class="mb-4">
+                {{ form.content.label_tag }}
+                {{ form.content }} <!-- already styled via forms.py -->
+            </div>
+
+            <div class="d-flex justify-content-end">
+                <button type="submit" class="btn btn-primary px-4 py-2 shadow-sm">🚀 Post</button>
+            </div>
+        </form>
+    </div>
+</div>
+{% endblock %}

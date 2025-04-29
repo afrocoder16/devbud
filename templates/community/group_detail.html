@@ -1,0 +1,48 @@
+{% extends 'base.html' %}
+
+{% block title %}{{ group.name }} - DevBud{% endblock %}
+
+{% block content %}
+<div class="container mt-5">
+    <div class="card shadow p-5 group-detail-card">
+        <h2 class="text-primary fw-bold mb-3">👥 {{ group.name }}</h2>
+        <p class="text-muted mb-3">{{ group.description }}</p>
+
+        <!-- Member Section -->
+        <div class="mt-4">
+            <h5 class="fw-bold">Members ({{ group.members.count }})</h5>
+            <div class="d-flex flex-wrap gap-3 mt-3">
+                {% for member in group.members.all %}
+                    <div class="text-center">
+                        <img src="https://ui-avatars.com/api/?name={{ member.username }}&background=7494ec&color=fff&rounded=true&size=64" alt="{{ member.username }}" class="rounded-circle shadow-sm mb-1" width="64" height="64">
+                        <p class="small text-muted mb-0">{{ member.username }}</p>
+                    </div>
+                {% empty %}
+                    <p class="text-muted">No members yet.</p>
+                {% endfor %}
+            </div>
+        </div>
+
+        <!-- Action Buttons -->
+        <div class="d-flex gap-2 mt-4">
+            {% if user.is_authenticated %}
+                {% if user in group.members.all %}
+                    <form method="post" action="{% url 'leave_group' group.pk %}">
+                        {% csrf_token %}
+                        <button type="submit" class="btn btn-warning btn-sm">🚪 Leave Group</button>
+                    </form>
+                {% else %}
+                    <form method="post" action="{% url 'join_group' group.pk %}">
+                        {% csrf_token %}
+                        <button type="submit" class="btn btn-success btn-sm">➕ Join Group</button>
+                    </form>
+                {% endif %}
+            {% endif %}
+            <a href="{% url 'group_update' group.pk %}" class="btn btn-outline-primary btn-sm">✏️ Edit</a>
+            <a href="{% url 'group_delete' group.pk %}" class="btn btn-outline-danger btn-sm">🗑 Delete</a>
+        </div>
+
+        <p class="text-muted mt-3">Created on {{ group.created_at|date:"F d, Y" }}</p>
+    </div>
+</div>
+{% endblock %}
