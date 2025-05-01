@@ -1,0 +1,20 @@
+{% extends 'base.html' %}
+{% block title %}Start Conversation - DevBud{% endblock %}
+
+{% block content %}
+<div class="container mt-5">
+    <h2 class="fw-bold mb-4 text-primary">📇 Start a Conversation</h2>
+    <p class="text-muted">Click a user to start chatting.</p>
+
+    <ul class="list-group shadow-sm">
+        {% for user in users %}
+            <li class="list-group-item d-flex justify-content-between align-items-center">
+                {{ user.username }}
+                <a href="{% url 'start_conversation' user.id %}" class="btn btn-outline-primary btn-sm">Message</a>
+            </li>
+        {% empty %}
+            <li class="list-group-item text-muted">No users found.</li>
+        {% endfor %}
+    </ul>
+</div>
+{% endblock %}

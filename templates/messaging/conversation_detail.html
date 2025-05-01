@@ -1,0 +1,38 @@
+{% extends 'base.html' %}
+{% block title %}Conversation - DevBud{% endblock %}
+
+{% block content %}
+<div class="container mt-5">
+    <h3 class="mb-4 text-primary">💬 Conversation</h3>
+
+    <div class="card shadow-sm p-4 mb-4" style="max-height: 70vh; overflow-y: auto;">
+        {% for message in messages %}
+            {% if message.sender == user %}
+                <div class="text-end mb-3">
+                    <div class="d-inline-block p-3 bg-primary text-white rounded">
+                        {{ message.content }}
+                    </div><br>
+                    <small class="text-muted">{{ message.timestamp|date:"M d, Y H:i" }}</small>
+                </div>
+            {% else %}
+                <div class="text-start mb-3">
+                    <div class="d-inline-block p-3 bg-light rounded">
+                        {{ message.content }}
+                    </div><br>
+                    <small class="text-muted">{{ message.sender.username }} • {{ message.timestamp|date:"M d, Y H:i" }}</small>
+                </div>
+            {% endif %}
+        {% empty %}
+            <p class="text-muted">No messages yet.</p>
+        {% endfor %}
+    </div>
+
+    <form method="post">
+        {% csrf_token %}
+        <div class="input-group">
+            {{ form.content }}
+            <button class="btn btn-primary">Send</button>
+        </div>
+    </form>
+</div>
+{% endblock %}

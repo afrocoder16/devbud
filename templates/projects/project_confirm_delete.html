@@ -1,0 +1,42 @@
+{% extends 'base.html' %}
+{% block title %}Inbox - DevBud{% endblock %}
+
+{% block content %}
+<div class="container mt-5">
+    <h2 class="fw-bold text-primary mb-4">📥 Inbox</h2>
+
+    {% if conversations %}
+        <div class="list-group shadow-sm">
+            {% for conversation in conversations %}
+                <a href="{% url 'conversation_detail' conversation.pk %}" class="list-group-item list-group-item-action mb-2 rounded">
+                    <div class="d-flex justify-content-between">
+                        <div>
+                            <strong>
+                                {% for participant in conversation.participants.all %}
+                                    {% if participant != user %}
+                                        {{ participant.username }}
+                                    {% endif %}
+                                {% endfor %}
+                            </strong>
+                        </div>
+                        <small class="text-muted">
+                            {% if conversation.last_message %}
+                                {{ conversation.last_message.timestamp|date:"M d, Y H:i" }}
+                            {% endif %}
+                        </small>
+                    </div>
+                    <div class="text-muted small">
+                        {% if conversation.last_message %}
+                            {{ conversation.last_message.content|truncatechars:50 }}
+                        {% else %}
+                            No messages yet
+                        {% endif %}
+                    </div>
+                </a>
+            {% endfor %}
+        </div>
+    {% else %}
+        <p class="text-muted">You have no conversations yet.</p>
+    {% endif %}
+</div>
+{% endblock %}

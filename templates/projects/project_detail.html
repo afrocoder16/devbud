@@ -1,0 +1,64 @@
+{% extends 'base.html' %}
+{% block title %}{{ project.title }} - DevBud{% endblock %}
+
+{% block content %}
+<div class="container mt-5">
+    <div class="card shadow p-5">
+        <h2 class="fw-bold text-primary mb-2">🚀 {{ project.title }}</h2>
+        <p class="text-muted">{{ project.description }}</p>
+
+        <div class="mb-3">
+            <strong>Tech Stack:</strong> {{ project.tech_stack }}
+        </div>
+
+        <div class="mb-3">
+            {% if project.github_link %}
+                <a href="{{ project.github_link }}" target="_blank" class="btn btn-outline-dark btn-sm me-2">🔗 GitHub</a>
+            {% endif %}
+            {% if project.live_link %}
+                <a href="{{ project.live_link }}" target="_blank" class="btn btn-outline-success btn-sm">🌐 Live Site</a>
+            {% endif %}
+        </div>
+
+        <div class="mt-4 d-flex gap-3 flex-wrap">
+            {% if user.is_authenticated %}
+                <form method="post" action="{% url 'request_collaboration' project.pk %}">
+                    {% csrf_token %}
+                    <button type="submit" class="btn btn-outline-primary">🤝 Request Collaboration</button>
+                </form>
+            {% endif %}
+            <a href="{% url 'project_update' project.pk %}" class="btn btn-outline-secondary">✏️ Edit</a>
+            <a href="{% url 'project_delete' project.pk %}" class="btn btn-outline-danger">🗑 Delete</a>
+        </div>
+
+        <!-- Divider -->
+        <hr class="my-5">
+
+        <!-- Feedback Section -->
+        <div class="mb-4">
+            <h4 class="fw-bold mb-3">💬 Feedback</h4>
+
+            {% for feedback in project.feedback_set.all %}
+                <div class="border rounded p-3 mb-3 bg-light">
+                    <p class="mb-1">{{ feedback.comment }}</p>
+                    <small class="text-muted">— {{ feedback.user.username }} • {{ feedback.created_at|date:"M d, Y" }}</small>
+                </div>
+            {% empty %}
+                <p class="text-muted">No feedback yet.</p>
+            {% endfor %}
+        </div>
+
+        {% if user.is_authenticated %}
+            <form method="post" action="{% url 'add_feedback' project.pk %}">
+                {% csrf_token %}
+                <div class="mb-3">
+                    <textarea name="comment" rows="3" class="form-control" placeholder="Write your feedback here..." required></textarea>
+                </div>
+                <button type="submit" class="btn btn-info">➕ Add Feedback</button>
+            </form>
+        {% else %}
+            <p><a href="{% url 'login' %}">Login</a> to leave feedback.</p>
+        {% endif %}
+    </div>
+</div>
+{% endblock %}

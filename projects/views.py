@@ -32,6 +32,7 @@ class ProjectUpdateView(LoginRequiredMixin, UpdateView):
     model = Project
     form_class = ProjectForm
     template_name = 'projects/project_form.html'
+    success_url = reverse_lazy('project_list')  # or 'project_detail' with pk
     
     def get_success_url(self):
         return reverse_lazy('project_detail', kwargs={'pk': self.object.pk})

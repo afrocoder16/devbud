@@ -6,6 +6,9 @@ from django.contrib.auth.models import User
 from django.contrib.auth.mixins import LoginRequiredMixin 
 from django.views.generic import ListView
 from .models import Conversation
+from django.views.generic.edit import FormMixin
+from django.views.generic.detail import DetailView
+
 
 @login_required
 def inbox(request):
@@ -50,3 +53,37 @@ class InboxView(LoginRequiredMixin, ListView):
 
     def get_queryset(self):
         return Conversation.objects.filter(participants=self.request.user)
+    
+class UserListView(LoginRequiredMixin, ListView):
+    model = User
+    template_name = 'messaging/user_list.html'
+    context_object_name = 'users'
+
+    def get_queryset(self):
+        return User.objects.exclude(id=self.request.user.id)
+
+class ConversationDetailView(LoginRequiredMixin, FormMixin, DetailView):
+    model = Conversation
+    template_name = 'messaging/conversation_detail.html'
+    context_object_name = 'conversation'
+    form_class = MessageForm
+
+    def get_success_url(self):
+        return self.request.path
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['messages'] = self.object.messages.order_by('timestamp')
+        context['form'] = self.get_form()
+        return context
+
+    def post(self, request, *args, **kwargs):
+        self.object = self.get_object()
+        form = self.get_form()
+        if form.is_valid():
+            message = form.save(commit=False)
+            message.sender = request.user
+            message.conversation = self.object
+            message.save()
+            return self.form_valid(form)
+        return self.form_invalid(form)

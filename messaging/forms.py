@@ -6,5 +6,9 @@ class MessageForm(forms.ModelForm):
         model = Message
         fields = ['content']
         widgets = {
-            'content': forms.Textarea(attrs={'rows': 3, 'placeholder': 'Type your message...'}),
+            'content': forms.TextInput(attrs={
+                'class': 'form-control',
+                'placeholder': 'Type a message...',
+                'autocomplete': 'off'
+            }),
         }
